@@ -8,15 +8,16 @@ $(function() { //Esta función hace cosas cuando el html carga
 	var maxP;
 
 	cargarCookie();
+	parseJson();
 });
 
 function cargarCookie(){
-	var zip = Cookies.get('zip');
-	var propType = Cookies.get('type');
-	var bathrooms = Cookies.get('bathrooms');
-	var bedrooms = Cookies.get('bedrooms');
-	var minP = Cookies.get('minPrice');
-	var maxP = Cookies.get('maxPrice');
+	zip = Cookies.get('zip');
+	propType = Cookies.get('type');
+	bathrooms = Cookies.get('bathrooms');
+	bedrooms = Cookies.get('bedrooms');
+	minP = Cookies.get('minPrice');
+	maxP = Cookies.get('maxPrice');
 
 	//Eliminando las cookies porque ya no las necesito
 	Cookies.remove('zip');
@@ -49,24 +50,20 @@ function cargarCookie(){
 }
 
 function parseJson(){
-	$.ajax({
-	    url: "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+"&PropertyType[in]="+propType+"&BathroomsTotalInteger[eq]="+bathrooms+"&BedroomsTotal[eq]="+bedrooms+"&OriginalListPrice[gte]="+minP+"&OriginalListPrice[lte]="+maxP+"&limit=100",
-	    //force to handle it as text
-	    dataType: "text",
-	    success: function(data) {
 
-	        //data downloaded so we call parseJSON function 
-	        //and pass downloaded data
-	        var listings = $.parseJSON(data);
-	        //now json variable contains data in json format
-	        //let's display a few items
-	        for (var i=0;i<listings.length;++i)
-	        {
-	            $('#result').append(`
-	            	<div>
-	            	<p>Zip: `+listings+`</p>
-	            	</div>`);
-	        }
+	var jsonRetsLy = "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+"&PropertyType[in]="+propType+"&BathroomsTotalInteger[lte]="+bathrooms+"&BedroomsTotal[lte]="+bedrooms+"&OriginalListPrice[gte]="+minP+"&OriginalListPrice[lte]="+maxP+"&limit=100";
+    $.getJSON(jsonRetsLy, function (listings) {
+    
+	    for (var i=0;i<listings.bundle.length;++i)
+	    {
+	        $('#result').append(`
+	        	<div style="border: 1px solid;">
+	        	<p>Zip: `+listings.bundle[i].PostalCode+`</p>
+	        	<p>Bathrooms: `+listings.bundle[i].BathroomsTotalInteger+`</p>
+	        	<p>Bedrooms: `+listings.bundle[i].BedroomsTotal+`</p>
+	        	<p>Property Type: `+listings.bundle[i].PropertyType+`</p>
+	        	<p>Pricing: `+listings.bundle[i].OriginalListPrice+`</p>
+	        	</div>`);
 	    }
 	});
 }
