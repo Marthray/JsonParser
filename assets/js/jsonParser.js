@@ -1,14 +1,18 @@
+function initAll(){
+    var zip = null;
+    var propType = null;
+    var bathrooms = null;
+    var bedrooms = null;
+    var minP = null;
+    var maxP = null;
+
+    cargarCookie();
+    parseJson();
+}
+
 $(function() { //Esta función hace cosas cuando el html carga
 	//obteniendo valores de las cookies
-	var zip;
-	var propType;
-	var bathrooms;
-	var bedrooms;
-	var minP;
-	var maxP;
-
-	cargarCookie();
-	parseJson();
+	initAll();
 });
 
 function cargarCookie(){
@@ -18,14 +22,6 @@ function cargarCookie(){
 	bedrooms = Cookies.get('bedrooms');
 	minP = Cookies.get('minPrice');
 	maxP = Cookies.get('maxPrice');
-
-	//Eliminando las cookies porque ya no las necesito
-	Cookies.remove('zip');
-    Cookies.remove('type');
-    Cookies.remove('bathrooms');
-    Cookies.remove('bedrooms');
-    Cookies.remove('minPrice');
-    Cookies.remove('maxPrice');
 }
 
 function parseJson(){
@@ -38,6 +34,7 @@ function parseJson(){
         for (var i=0;i<listings.bundle.length;++i){
         	$('#result').append(`
         	<div class="listing p`+page+`" style="border: 1px solid;">
+                <a href="unique.html?id=`+listings.bundle[i].ListingId+`" target="_blank">ID: `+listings.bundle[i].ListingId+`</a>
 	        	<p>Zip: `+listings.bundle[i].PostalCode+`</p>
 	        	<p>Bathrooms: `+listings.bundle[i].BathroomsTotalInteger+`</p>
 	        	<p>Bedrooms: `+listings.bundle[i].BedroomsTotal+`</p>
