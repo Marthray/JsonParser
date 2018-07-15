@@ -9,7 +9,6 @@ $(function() { //Esta función hace cosas cuando el html carga
 
 	cargarCookie();
 	parseJson();
-	//pagination();
 });
 
 function cargarCookie(){
@@ -27,50 +26,47 @@ function cargarCookie(){
     Cookies.remove('bedrooms');
     Cookies.remove('minPrice');
     Cookies.remove('maxPrice');
-
-    /*$('#result').append(`
-    	<div>
-    		`+zip+`
-    	</div>
-    	<div>
-    		`+propType+`
-    	</div>
-    	<div>
-    		`+bathrooms+`
-    	</div>
-    	<div>
-    		`+bedrooms+`
-    	</div>
-    	<div>
-    		`+minP+`
-    	</div>
-    	<div>
-    		`+maxP+`
-    	</div>
-    	`)*/
 }
 
 function parseJson(){
 
 	var jsonRetsLy = "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+"&PropertyType[in]="+propType+"&BathroomsTotalInteger[lte]="+bathrooms+"&BedroomsTotal[lte]="+bedrooms+"&OriginalListPrice[gte]="+minP+"&OriginalListPrice[lte]="+maxP+"&limit=100";
     $.getJSON(jsonRetsLy, function (listings) {
+    	var cont = 0;
+    	var page = 1;
+    	var pageLimit = 5;
         for (var i=0;i<listings.bundle.length;++i){
         	$('#result').append(`
-        	<li><div class="listing" style="border: 1px solid;">
+        	<div class="listing p`+page+`" style="border: 1px solid;">
 	        	<p>Zip: `+listings.bundle[i].PostalCode+`</p>
 	        	<p>Bathrooms: `+listings.bundle[i].BathroomsTotalInteger+`</p>
 	        	<p>Bedrooms: `+listings.bundle[i].BedroomsTotal+`</p>
 	        	<p>Property Type: `+listings.bundle[i].PropertyType+`</p>
 	        	<p>Pricing: `+listings.bundle[i].OriginalListPrice+`</p>
-        	</div></li>`);
+        	</div>`);
+        	if((i+1) % pageLimit == 0){
+        		page++;
+        	}
+        	cont++
 		}
+		pagination(page);
 	});
 }
 
-function pagination(){
-	var listingList = new List('result', {
-	  valueNames: ['listing'],
-	  page: 5,
-	  pagination: true
-	});
+function pagination(pages){
+	$('#paginate').twbsPagination({
+        totalPages: pages,
+        visiblePages: 5,
+        onPageClick: function (event, page) {
+            for(var i=0; i<pages; ++i){
+            	if(i==(page-1)){
+            		$('.p'+(i+1)).removeClass('dNone');
+            		$('.p'+(i+1)).addClass('dTrue');
+            	} else {
+            		$('.p'+(i+1)).removeClass('dTrue');
+            		$('.p'+(i+1)).addClass('dNone');
+            	}
+            }
+        }
+    });
 }
