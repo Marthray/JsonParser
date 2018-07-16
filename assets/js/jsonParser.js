@@ -15,6 +15,8 @@ $(function() { //Esta función hace cosas cuando el html carga
 	initAll();
 });
 
+
+
 function cargarCookie(){
 	zip = Cookies.get('zip');
 	propType = Cookies.get('type');
