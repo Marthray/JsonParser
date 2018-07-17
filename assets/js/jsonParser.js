@@ -53,7 +53,7 @@ function parseJson(){
                         `<p>MediaURL `+(j+1)+`: `+listings.bundle[i].Media[j].MediaURL+`</p>`
                     );
                 }
-            } else {$('#Media').append("<p>Doesn't apply</p>");}
+            } else {$('#Media'+i).append("<p>Doesn't apply</p>");}
 
             //page number
         	if((i+1) % pageLimit == 0){
