@@ -1,4 +1,4 @@
-var getUrlParameter = function getUrlParameter(sParam) { //param via get
+/*function getUrlParameter(sParam) { //param via get
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
         sURLVariables = sPageURL.split('&'),
         sParameterName,
@@ -11,11 +11,26 @@ var getUrlParameter = function getUrlParameter(sParam) { //param via get
             return sParameterName[1] === undefined ? true : sParameterName[1];
         }
     }
-};
+}*/
+function $_GET(param) {
+	var vars = {};
+	window.location.href.replace( location.hash, '' ).replace( 
+		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+		function( m, key, value ) { // callback
+			vars[key] = value !== undefined ? value : '';
+		}
+	);
+
+	if ( param ) {
+		return vars[param] ? vars[param] : null;	
+	}
+	return vars;
+}
 
 $(function() { //Esta función hace cosas cuando el html carga
 	//obteniendo valores de las cookies
-	var listingId = getUrlParameter('id');
+	var listingId = $_GET('id');
+	console.log(listingId);
 	var jsonRetsLy = "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&ListingId[eq]="+listingId;
 	$.getJSON(jsonRetsLy, function (unique) {
 		for (var i=0;i<unique.bundle.length;++i){
