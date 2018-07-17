@@ -34,9 +34,8 @@ $(function() { //Esta función hace cosas cuando el html carga
 	var jsonRetsLy = "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&ListingId[eq]="+listingId;
 	$.getJSON(jsonRetsLy, function (unique) {
 		for (var i=0;i<unique.bundle.length;++i){
-        	$('#test').append(`
+        	$('#unique-property').append(`
         	<div class="listing" style="border: 1px solid;">
-                <a href="unique.html?id=`+unique.bundle[i].ListingId+`" target="_blank">ID: `+unique.bundle[i].ListingId+`</a>
 	        	<p>Zip: `+unique.bundle[i].PostalCode+`</p>
 	        	<p>Bathrooms: `+unique.bundle[i].BathroomsTotalInteger+`</p>
 	        	<p>Bedrooms: `+unique.bundle[i].BedroomsTotal+`</p>
