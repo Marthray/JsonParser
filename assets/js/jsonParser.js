@@ -36,7 +36,7 @@ function parseJson(){
         for (var i=0;i<listings.bundle.length;++i){
         	$('#result').append(`
         	<div class="listing p`+page+`" style="border: 1px solid;">
-                <a href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`" target="_blank">ID: `+listings.bundle[i].ListingId+`</a>
+                <a href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`">ID: `+listings.bundle[i].ListingId+`</a>
 	        	<p>Zip: `+listings.bundle[i].PostalCode+`</p>
 	        	<p>Bathrooms: `+listings.bundle[i].BathroomsTotalInteger+`</p>
 	        	<p>Bedrooms: `+listings.bundle[i].BedroomsTotal+`</p>
