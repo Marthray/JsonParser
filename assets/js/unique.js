@@ -39,8 +39,10 @@ $(function() { //Esta función hace cosas cuando el html carga
 	        	<p>Zip: `+unique.bundle[i].PostalCode+`</p>
 	        	<p>Bathrooms: `+unique.bundle[i].BathroomsTotalInteger+`</p>
 	        	<p>Bedrooms: `+unique.bundle[i].BedroomsTotal+`</p>
-	        	<p>Property Type: `+unique.bundle[i].PropertyType+`</p>
-	        	<p>Pricing: `+unique.bundle[i].OriginalListPrice+`</p>`+
+	        	<p>Property Type: `+unique.bundle[i].PropertySubType+`</p>
+	        	<p>Pricing: `+unique.bundle[i].OriginalListPrice+`</p>
+	        	<div id="Media`+i+`">
+                </div>`+
 
 	        	//A partir de aquí va la data de unique en especifico
 
@@ -60,6 +62,14 @@ $(function() { //Esta función hace cosas cuando el html carga
         	</div>`);
 
         	//Flooring, Appliances and ListingTerms
+
+        	if(unique.bundle[i].Media != null){
+                for (var j=0; j<unique.bundle[i].Media.length;++j){
+                    $('#Media'+i).append(
+                        `<p>MediaURL `+(j+1)+`: `+unique.bundle[i].Media[j].MediaURL+`</p>`
+                    );
+                }
+            } else {$('#Media'+i).append("<p>Doesn't apply</p>");}
 
         	if(unique.bundle[i].Flooring != null){
 	        	for (var j=0; j<unique.bundle[i].Flooring.length;++j){
