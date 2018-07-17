@@ -28,7 +28,7 @@ function cargarCookie(){
 
 function parseJson(){
 
-	var jsonRetsLy = "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+"&PropertyType[in]="+propType+"&BathroomsTotalInteger[eq]="+bathrooms+"&BedroomsTotal[eq]="+bedrooms+"&OriginalListPrice[gte]="+minP+"&OriginalListPrice[lte]="+maxP+"&limit=100";
+	var jsonRetsLy = "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+"&PropertySubType[in]="+propType+"&BathroomsTotalInteger[lte]="+bathrooms+"&BedroomsTotal[lte]="+bedrooms+"&OriginalListPrice[gte]="+minP+"&OriginalListPrice[lte]="+maxP+"&limit=100";
     $.getJSON(jsonRetsLy, function (listings) {
     	var cont = 0;
     	var page = 1;
