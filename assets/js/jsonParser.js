@@ -28,7 +28,7 @@ function cargarCookie(){
 
 function parseJson(){
 
-	var jsonRetsLy = "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+"&PropertyType[in]="+propType+"&BathroomsTotalInteger[eq]="+bathrooms+"&BedroomsTotal[eq]="+bedrooms+"&OriginalListPrice[gte]="+minP+"&OriginalListPrice[lte]="+maxP+"&limit=100";
+	var jsonRetsLy = "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+"&PropertySubType[in]="+propType+"&BathroomsTotalInteger[lte]="+bathrooms+"&BedroomsTotal[lte]="+bedrooms+"&OriginalListPrice[gte]="+minP+"&OriginalListPrice[lte]="+maxP+"&limit=100";
     $.getJSON(jsonRetsLy, function (listings) {
     	var cont = 0;
     	var page = 1;
@@ -42,7 +42,20 @@ function parseJson(){
 	        	<p>Bedrooms: `+listings.bundle[i].BedroomsTotal+`</p>
 	        	<p>Property Type: `+listings.bundle[i].PropertySubType+`</p>
 	        	<p>Pricing: `+listings.bundle[i].OriginalListPrice+`</p>
+                <div id="Media`+i+`">
+                </div>
         	</div>`);
+
+            //Media appending
+            if(listings.bundle[i].Media != null){
+                for (var j=0; j<listings.bundle[i].Media.length;++j){
+                    $('#Media'+i).append(
+                        `<p>MediaURL `+(j+1)+`: `+listings.bundle[i].Media[j].MediaURL+`</p>`
+                    );
+                }
+            } else {$('#Media').append("<p>Doesn't apply</p>");}
+
+            //page number
         	if((i+1) % pageLimit == 0){
         		page++;
         	}
