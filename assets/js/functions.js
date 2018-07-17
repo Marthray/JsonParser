@@ -23,7 +23,7 @@ $('#send').click(function(e){
 		Cookies.set('bedrooms', bedrooms);
 		Cookies.set('minPrice', minP);
 		Cookies.set('maxPrice', maxP);
-		window.location.href = 'probando.html';
+		window.location.href = 'https://soulierproperties.com/list-properties/';
 	} else {
 		alert ("Please, all of the values must be numeric excepting \"Property Type\"");
 	}
