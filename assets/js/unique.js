@@ -35,7 +35,12 @@ $(function() { //Esta función hace cosas cuando el html carga
 	$.getJSON(jsonRetsLy, function (unique) {
 		for (var i=0;i<unique.bundle.length;++i){
         	$('#unique-property').append(`
-        	<div class="listing" style="border: 1px solid;">
+        	<div class="listing row">
+        	<div class="col-lg-6 info-left-property">
+        	</div>
+        	<div class="col-lg-6 info-right-property">
+        	</div>
+
 	        	<p>Zip: `+unique.bundle[i].PostalCode+`</p>
 	        	<p>Bathrooms: `+unique.bundle[i].BathroomsTotalInteger+`</p>
 	        	<p>Bedrooms: `+unique.bundle[i].BedroomsTotal+`</p>
