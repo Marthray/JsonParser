@@ -1,6 +1,7 @@
 $(function() {
     Cookies.remove('zip');
     Cookies.remove('type');
+    Cookies.remove('rent');
     Cookies.remove('bathrooms');
     Cookies.remove('bedrooms');
     Cookies.remove('minPrice');
@@ -16,10 +17,16 @@ $('#send').click(function(e){
 	var minP = $('#min-price').val();
 	var maxP = $('#max-price').val();
 
+	var rent;
+	if($('#rent').val()=="for rent"){
+		rent = true;
+	} else {rent = false;}
+
 	if((!isNaN(zip)) && (!isNaN(bathrooms)) && (!isNaN(bedrooms)) && (!isNaN(minP)) && (!isNaN(maxP))) {
 		Cookies.set('zip', zip);
 		Cookies.set('type', propType);
 		Cookies.set('bathrooms', bathrooms);
+		Cookies.set('rent', rent);
 		Cookies.set('bedrooms', bedrooms);
 		Cookies.set('minPrice', minP);
 		Cookies.set('maxPrice', maxP);

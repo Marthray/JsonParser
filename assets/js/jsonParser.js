@@ -3,6 +3,7 @@ function initAll(){
     var propType = null;
     var bathrooms = null;
     var bedrooms = null;
+    var rent = null;
     var minP = null;
     var maxP = null;
 
@@ -22,13 +23,14 @@ function cargarCookie(){
 	propType = Cookies.get('type');
 	bathrooms = Cookies.get('bathrooms');
 	bedrooms = Cookies.get('bedrooms');
+    rent = Cookies.get('rent');
 	minP = Cookies.get('minPrice');
 	maxP = Cookies.get('maxPrice');
 }
 
 function parseJson(){
 
-	var jsonRetsLy = "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+"&PropertySubType[in]="+propType+"&BathroomsTotalInteger[lte]="+bathrooms+"&BedroomsTotal[lte]="+bedrooms+"&OriginalListPrice[gte]="+minP+"&OriginalListPrice[lte]="+maxP+"&limit=100";
+	var jsonRetsLy = "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+"&PropertySubType[in]="+propType+"&LeaseConsideredYN[eq]="+rent+"&BathroomsTotalInteger[lte]="+bathrooms+"&BedroomsTotal[lte]="+bedrooms+"&OriginalListPrice[gte]="+minP+"&OriginalListPrice[lte]="+maxP+"&limit=100";
     $.getJSON(jsonRetsLy, function (listings) {
     	var cont = 0;
     	var page = 1;
@@ -49,6 +51,7 @@ function parseJson(){
                         <div class="col-lg-2 main-info-list"><p style="font-size:16px">SQFT</p><p class="sqtl-list">`+listings.bundle[i].LotSizeSquareFeet+`</p></div>
                         <div class="col-lg-6"><a class="btn btn-primary" href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`">View More</a></div>
                         <div class="col-lg-6"><p class="price-list">$`+listings.bundle[i].OriginalListPrice+`</p></div>
+                        <p>Rent?: `+listings.bundle[i].LeaseConsideredYN+`</p>
                     </div>
                     
                 </div>
