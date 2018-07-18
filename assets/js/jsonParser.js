@@ -34,18 +34,26 @@ function parseJson(){
     $.getJSON(jsonRetsLy, function (listings) {
     	var cont = 0;
     	var page = 1;
-    	var pageLimit = 5;
+    	var pageLimit = 9;
         for (var i=0;i<listings.bundle.length;++i){
         	$('#result').append(`
-        	<div class="listing p`+page+`" style="border: 1px solid;">
-                <a href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`">ID: `+listings.bundle[i].ListingId+`</a>
-	        	<p>Zip: `+listings.bundle[i].PostalCode+`</p>
-	        	<p>Bathrooms: `+listings.bundle[i].BathroomsTotalInteger+`</p>
-	        	<p>Bedrooms: `+listings.bundle[i].BedroomsTotal+`</p>
-                <p>Rent?: `+listings.bundle[i].LeaseConsideredYN+`</p>
-	        	<p>Property Type: `+listings.bundle[i].PropertySubType+`</p>
-	        	<p>Pricing: `+listings.bundle[i].OriginalListPrice+`</p>
-                <div id="Media`+i+`">
+        	<div class="listing p`+page+`">
+                <div class="a-property col-lg-4 col-sm-6">
+                    <h2><a href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`">`+listings.bundle[i].UnparsedAddress+`</a></h2>
+                    <div class="image-property">
+                        <a href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`"><img src="`+listings.bundle[i].Media[0].MediaURL+`"></a>
+                    </div>
+
+                    <div class="list-main-info">
+                        <div class="col-lg-6"><p class="property-type-list">`+listings.bundle[i].PropertySubType+`</p></div>
+                        <div class="col-lg-2 main-info-list"><p><i class="fa fa-bed text-normal " style="font-size:24px"></i></p><p class="bathrooms-list">`+listings.bundle[i].BathroomsTotalInteger+`</p></div>
+                        <div class="col-lg-2 main-info-list"><p><i class="fa fa-bath text-normal " style="font-size:24px"></i></p><p class="bedrooms-list">`+listings.bundle[i].BedroomsTotal+`</p></div>
+                        <div class="col-lg-2 main-info-list"><p style="font-size:16px">SQFT</p><p class="sqtl-list">`+listings.bundle[i].LotSizeSquareFeet+`</p></div>
+                        <div class="col-lg-6"><a class="btn btn-primary" href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`">View More</a></div>
+                        <div class="col-lg-6"><p class="price-list">$`+listings.bundle[i].OriginalListPrice+`</p></div>
+                        <p>Rent?: `+listings.bundle[i].LeaseConsideredYN+`</p>
+                    </div>
+                    
                 </div>
         	</div>`);
 
