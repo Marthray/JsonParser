@@ -36,14 +36,19 @@ $(function() { //Esta función hace cosas cuando el html carga
 		for (var i=0;i<unique.bundle.length;++i){
         	$('#unique-property').append(`
         	<div class="listing row">
-        	<div class="col-lg-6 info-left-property">
-        	</div>
-        	<div class="col-lg-6 info-right-property">
-        	</div>
+	        	<div class="col-lg-6 info-left-property">
+	        		<a class="figure-image magnific" href="`+unique.bundle[i].Media[0].MediaURL+`" target="_self"><img src="`+unique.bundle[i].Media[0].MediaURL+`" alt="`+unique.bundle[i].UnparsedAddress+`"></a>
+	        	</div>
+	        	<div class="col-lg-6 info-right-property">
+	        		<h1>`+unique.bundle[i].UnparsedAddress+`</h1>
+	        		<h2>$`+unique.bundle[i].OriginalListPrice+`</h2>
+	        		<p>Year Built: `+unique.bundle[i].YearBuilt+`</p>
+	        		<p>Bathrooms: `+unique.bundle[i].BathroomsTotalInteger+`</p>
+	        		<p>Bedrooms: `+unique.bundle[i].BedroomsTotal+`</p>
+	        	</div>
 
 	        	<p>Zip: `+unique.bundle[i].PostalCode+`</p>
-	        	<p>Bathrooms: `+unique.bundle[i].BathroomsTotalInteger+`</p>
-	        	<p>Bedrooms: `+unique.bundle[i].BedroomsTotal+`</p>
+	        	
 	        	<p>Property Type: `+unique.bundle[i].PropertySubType+`</p>
 	        	<p>Pricing: `+unique.bundle[i].OriginalListPrice+`</p>
 	        	<div id="Media`+i+`">

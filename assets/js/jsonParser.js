@@ -39,7 +39,7 @@ function parseJson(){
                 <div class="a-property col-lg-4 col-sm-6">
                     <h2><a href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`">`+listings.bundle[i].UnparsedAddress+`</a></h2>
                     <div class="image-property">
-                        <a href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`"><img src="`+listings.bundle[i].Media[0].MediaURL+`"></a>
+                        <a href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`"><img src="`+listings.bundle[i].Media[0].MediaURL+`" alt="`+listings.bundle[i].UnparsedAddress+`"></a>
                     </div>
 
                     <div class="list-main-info">
