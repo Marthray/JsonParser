@@ -36,47 +36,44 @@ $(function() { //Esta función hace cosas cuando el html carga
 		for (var i=0;i<unique.bundle.length;++i){
         	$('#unique-property').append(`
         	<div class="listing row">
-	        	<div class="col-lg-6 info-left-property">
+	        	<div class="col-sm-6 info-left-property">
 	        		<a class="figure-image magnific" href="`+unique.bundle[i].Media[0].MediaURL+`" target="_self"><img src="`+unique.bundle[i].Media[0].MediaURL+`" alt="`+unique.bundle[i].UnparsedAddress+`"></a>
 	        	</div>
-	        	<div class="col-lg-6 info-right-property">
+	        	<div class="col-sm-6 info-right-property">
 	        		<h1>`+unique.bundle[i].UnparsedAddress+`</h1>
 	        		<h2>$`+unique.bundle[i].OriginalListPrice+`</h2>
-	        		<p>Year Built: `+unique.bundle[i].YearBuilt+`</p>
-	        		<p>Bathrooms: `+unique.bundle[i].BathroomsTotalInteger+`</p>
-	        		<p>Bedrooms: `+unique.bundle[i].BedroomsTotal+`</p>
+	        		<div class="row">
+	        			<div class="col-xs-6">
+							<p>Year Built: `+unique.bundle[i].YearBuilt+`</p>
+	        				<p>Bathrooms: `+unique.bundle[i].BathroomsTotalInteger+`</p>
+	        			</div>
+	        			<div class="col-xs-6">
+							<p>Bedrooms: `+unique.bundle[i].BedroomsTotal+`</p>
+	        				<p>SQTF: `+unique.bundle[i].LotSizeSquareFeet+`</p>
+	        			</div>
+	        		</div>
+
+	        		<a class="btn btn-primary" href="https://soulierproperties.com/contact/" target="_blank">Contact</a>
+	        		<a class="btn btn-primary" href="https://soulierproperties.com/contact/" target="_blank">Request an Appointment</a>
 	        	</div>
 
-	        	<p>Zip: `+unique.bundle[i].PostalCode+`</p>
-	        	
-	        	<p>Property Type: `+unique.bundle[i].PropertySubType+`</p>
-	        	<p>Pricing: `+unique.bundle[i].OriginalListPrice+`</p>
-	        	<div id="Media`+i+`">
-                </div>`+
+	        	<div class="col-sm-12">
+	        		<h3>Description</h3>
+	        		<p>`+unique.bundle[i].InteriorFeatures+`</p>
+	        	</div>
 
-	        	//A partir de aquí va la data de unique en especifico
+	        	<div class="row" id="Media">
 
-	        	`<p>Address: `+unique.bundle[i].UnparsedAddress+`</p>
-	        	 <p>Year Built: `+unique.bundle[i].YearBuilt+` , `+unique.bundle[i].YearBuiltDetails+`</p>
-	        	 <p>Description: `+unique.bundle[i].PropertySubType+` , `+unique.bundle[i].InteriorFeatures+`</p>
-	        	 <p>Furnished?: `+unique.bundle[i].Furnished+`</p>
-	        	 <b>Flooring</b>
-	        	 <div id="floor">
-	        	 </div>
-	        	 <b>Appliances</b>
-	        	 <div id="appliances">
-	        	 </div>
-	        	 <b>Listing Terms</b>
-	        	 <div id="listTerms">
-	        	 </div>
+	        	</div>
+
         	</div>`);
 
         	//Flooring, Appliances and ListingTerms
 
         	if(unique.bundle[i].Media != null){
                 for (var j=0; j<unique.bundle[i].Media.length;++j){
-                    $('#Media'+i).append(
-                        `<p>MediaURL `+(j+1)+`: `+unique.bundle[i].Media[j].MediaURL+`</p>`
+                    $('#Media').append(
+                        `<div class="col-xs-3 images-unique"><a class="figure-image magnific" href="`+unique.bundle[i].Media[j].MediaURL+`" target="_self"><img src="`+unique.bundle[i].Media[j].MediaURL+`" alt="`+unique.bundle[i].UnparsedAddress+`-`+(j+1)+`"></a></div>`
                     );
                 }
             } else {$('#Media'+i).append("<p>Doesn't apply</p>");}

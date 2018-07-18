@@ -16,11 +16,11 @@ $('#send').click(function(e){
 	var bedrooms = $('#bed').val();
 	var minP = $('#min-price').val();
 	var maxP = $('#max-price').val();
+	var rent = $('#rent').val();
 
-	var rent;
-	if($('#rent').val()=="for rent"){
-		rent = true;
-	} else {rent = false;}
+	if( rent =="For Rent"){
+		rent = "true";
+	} else {rent = "false";}
 
 	if((!isNaN(zip)) && (!isNaN(bathrooms)) && (!isNaN(bedrooms)) && (!isNaN(minP)) && (!isNaN(maxP))) {
 		Cookies.set('zip', zip);

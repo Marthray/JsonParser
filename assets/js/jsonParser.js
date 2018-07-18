@@ -45,13 +45,12 @@ function parseJson(){
                     </div>
 
                     <div class="list-main-info">
-                        <div class="col-lg-6"><p class="property-type-list">`+listings.bundle[i].PropertySubType+`</p></div>
-                        <div class="col-lg-2 main-info-list"><p><i class="fa fa-bed text-normal " style="font-size:24px"></i></p><p class="bathrooms-list">`+listings.bundle[i].BathroomsTotalInteger+`</p></div>
-                        <div class="col-lg-2 main-info-list"><p><i class="fa fa-bath text-normal " style="font-size:24px"></i></p><p class="bedrooms-list">`+listings.bundle[i].BedroomsTotal+`</p></div>
-                        <div class="col-lg-2 main-info-list"><p style="font-size:16px">SQFT</p><p class="sqtl-list">`+listings.bundle[i].LotSizeSquareFeet+`</p></div>
-                        <div class="col-lg-6"><a class="btn btn-primary" href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`">View More</a></div>
-                        <div class="col-lg-6"><p class="price-list">$`+listings.bundle[i].OriginalListPrice+`</p></div>
-                        <p>Rent?: `+listings.bundle[i].LeaseConsideredYN+`</p>
+                        <div class="col-xs-6"><p class="property-type-list">`+listings.bundle[i].PropertySubType+`</p></div>
+                        <div class="col-xs-2 main-info-list"><p><i class="fa fa-bed text-normal " style="font-size:24px"></i></p><p class="bathrooms-list">`+listings.bundle[i].BathroomsTotalInteger+`</p></div>
+                        <div class="col-xs-2 main-info-list"><p><i class="fa fa-bath text-normal " style="font-size:24px"></i></p><p class="bedrooms-list">`+listings.bundle[i].BedroomsTotal+`</p></div>
+                        <div class="col-xs-2 main-info-list"><p style="font-size:16px">SQFT</p><p class="sqtl-list">`+listings.bundle[i].LotSizeSquareFeet+`</p></div>
+                        <div class="col-xs-6"><a class="btn btn-primary" href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`">View More</a></div>
+                        <div class="col-xs-6"><p class="price-list">$`+listings.bundle[i].OriginalListPrice+`</p></div>
                     </div>
                     
                 </div>
