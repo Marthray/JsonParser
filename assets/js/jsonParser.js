@@ -28,9 +28,29 @@ function cargarCookie(){
 	maxP = Cookies.get('maxPrice');
 }
 
+function getURL(){
+    if((bathrooms != "") && (bedrooms != "") && (minP != "")) {
+
+    } else if((bathrooms != "") && (bedrooms != "") && (minP == "")) {
+        
+    } else if((bathrooms != "") && (bedrooms == "") && (minP != "")) {
+        
+    } else if((bathrooms != "") && (bedrooms == "") && (minP == "")) {
+        
+    } else if((bathrooms == "") && (bedrooms != "") && (minP != "")) {
+
+    } else if((bathrooms == "") && (bedrooms != "") && (minP == "")) {
+        
+    } else if((bathrooms == "") && (bedrooms == "") && (minP != "")) {
+        
+    } else if((bathrooms == "") && (bedrooms == "") && (minP == "")) {
+        
+    }
+}
+
 function parseJson(){
 
-	var jsonRetsLy = "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+"&PropertySubType[in]="+propType+"&LeaseConsideredYN[eq]="+rent+"&BathroomsTotalInteger[lte]="+bathrooms+"&BedroomsTotal[lte]="+bedrooms+"&OriginalListPrice[gte]="+minP+"&OriginalListPrice[lte]="+maxP+"&limit=100";
+	var jsonRetsLy =  ;
     $.getJSON(jsonRetsLy, function (listings) {
     	var cont = 0;
     	var page = 1;
