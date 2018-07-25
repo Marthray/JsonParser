@@ -41,7 +41,7 @@ $(function() { //Esta función hace cosas cuando el html carga
 	        	</div>
 	        	<div class="col-sm-6 info-right-property">
 	        		<h1>`+unique.bundle[i].UnparsedAddress+`</h1>
-	        		<h2>$`+unique.bundle[i].OriginalListPrice+`</h2>
+	        		<h2>$`+accounting.formatNumber(parseInt(unique.bundle[i].OriginalListPrice))+`</h2>
 	        		<div class="row">
 	        			<div class="col-xs-6">
 							<p>Year Built: `+unique.bundle[i].YearBuilt+`</p>

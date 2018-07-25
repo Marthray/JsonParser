@@ -28,29 +28,37 @@ function cargarCookie(){
 	maxP = Cookies.get('maxPrice');
 }
 
+function getProperty(param){
+    if (param=="All"){
+        return "";
+    } else {
+        return ("&PropertySubType[in]="+param);
+    }
+}
+
 function getURL(){
-    if((bathrooms != "") && (bedrooms != "") && (minP != "")) {
-
-    } else if((bathrooms != "") && (bedrooms != "") && (minP == "")) {
-        
-    } else if((bathrooms != "") && (bedrooms == "") && (minP != "")) {
-        
-    } else if((bathrooms != "") && (bedrooms == "") && (minP == "")) {
-        
-    } else if((bathrooms == "") && (bedrooms != "") && (minP != "")) {
-
-    } else if((bathrooms == "") && (bedrooms != "") && (minP == "")) {
-        
-    } else if((bathrooms == "") && (bedrooms == "") && (minP != "")) {
-        
-    } else if((bathrooms == "") && (bedrooms == "") && (minP == "")) {
-        
+    if((bathrooms != "0") && (bedrooms != "0") && (minP != "0")) {
+        return "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+getProperty(propType)+"&LeaseConsideredYN[eq]="+rent+"&BathroomsTotalInteger[lte]="+bathrooms+"&BedroomsTotal[lte]="+bedrooms+"&OriginalListPrice[gte]="+minP+"&OriginalListPrice[lte]="+maxP+"&limit=100";
+    } else if((bathrooms != "0") && (bedrooms != "0") && (minP == "0")) {
+        return "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+getProperty(propType)+"&LeaseConsideredYN[eq]="+rent+"&BathroomsTotalInteger[lte]="+bathrooms+"&BedroomsTotal[lte]="+bedrooms+"&limit=100";
+    } else if((bathrooms != "0") && (bedrooms == "0") && (minP != "0")) {
+        return "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+getProperty(propType)+"&LeaseConsideredYN[eq]="+rent+"&BathroomsTotalInteger[lte]="+bathrooms+"&OriginalListPrice[gte]="+minP+"&OriginalListPrice[lte]="+maxP+"&limit=100";
+    } else if((bathrooms != "0") && (bedrooms == "0") && (minP == "0")) {
+        return "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+getProperty(propType)+"&LeaseConsideredYN[eq]="+rent+"&BathroomsTotalInteger[lte]="+bathrooms+"&limit=100";
+    } else if((bathrooms == "0") && (bedrooms != "0") && (minP != "0")) {
+        return "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+getProperty(propType)+"&LeaseConsideredYN[eq]="+rent+"&BedroomsTotal[lte]="+bedrooms+"&OriginalListPrice[gte]="+minP+"&OriginalListPrice[lte]="+maxP+"&limit=100";
+    } else if((bathrooms == "0") && (bedrooms != "0") && (minP == "0")) {
+        return "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+getProperty(propType)+"&LeaseConsideredYN[eq]="+rent+"&BedroomsTotal[lte]="+bedrooms+"&limit=100";
+    } else if((bathrooms == "0") && (bedrooms == "0") && (minP != "0")) {
+        return "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+getProperty(propType)+"&LeaseConsideredYN[eq]="+rent+"&OriginalListPrice[gte]="+minP+"&OriginalListPrice[lte]="+maxP+"&limit=100";
+    } else if((bathrooms == "0") && (bedrooms == "0") && (minP == "0")) {
+        return "https://rets.io/api/v2/test/listings?access_token=7f8afaacb6f6f5cd2c80f3ee8f9bb103&PostalCode[eq]="+zip+getProperty(propType)+"&LeaseConsideredYN[eq]="+rent+"&limit=100";
     }
 }
 
 function parseJson(){
 
-	var jsonRetsLy =  ;
+	var jsonRetsLy =  getURL();
     $.getJSON(jsonRetsLy, function (listings) {
     	var cont = 0;
     	var page = 1;
@@ -70,7 +78,7 @@ function parseJson(){
                         <div class="col-xs-2 main-info-list"><p><i class="fa fa-bath text-normal " style="font-size:24px"></i></p><p class="bedrooms-list">`+listings.bundle[i].BedroomsTotal+`</p></div>
                         <div class="col-xs-2 main-info-list"><p style="font-size:16px">SQFT</p><p class="sqtl-list">`+listings.bundle[i].LotSizeSquareFeet+`</p></div>
                         <div class="col-xs-6"><a class="btn btn-primary" href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`">View More</a></div>
-                        <div class="col-xs-6"><p class="price-list">$`+listings.bundle[i].OriginalListPrice+`</p></div>
+                        <div class="col-xs-6"><p class="price-list">$`+accounting.formatNumber(parseInt(listings.bundle[i].OriginalListPrice))+`</p></div>
                     </div>
                     
                 </div>
