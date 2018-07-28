@@ -63,6 +63,11 @@ function parseJson(){
     	var cont = 0;
     	var page = 1;
     	var pageLimit = 9;
+        if (listings.bundle.length < 1){
+            $('#result').append(`
+                <p> Sorry, nothing was found with your specifications. <a href="https://soulierproperties.com/">Try again</a>
+                `);
+        } else {
         for (var i=0;i<listings.bundle.length;++i){
         	$('#result').append(`
         	<div class="listing p`+page+`">
@@ -83,6 +88,7 @@ function parseJson(){
                     
                 </div>
         	</div>`);
+        }
 
             //Media appending
             if(listings.bundle[i].Media != null){
@@ -98,8 +104,8 @@ function parseJson(){
         		page++;
         	}
         	cont++
+            pagination(page);
 		}
-		pagination(page);
 	});
 }
 

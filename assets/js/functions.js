@@ -42,8 +42,8 @@ $('#send').click(function(e){
 				Cookies.set('bedrooms', bedrooms);
 				Cookies.set('minPrice', minP);
 				Cookies.set('maxPrice', maxP);
-				window.location.href = 'https://soulierproperties.com/list-properties/';
-				//window.location.href = 'probando.html';
+				//window.location.href = 'https://soulierproperties.com/list-properties/';
+				window.location.href = 'probando.html';
 			} else {
 				alert ("Minimum price MUST be lower than maximum price");
 			}
