@@ -69,12 +69,18 @@ function parseJson(){
                 `);
         } else {
         for (var i=0;i<listings.bundle.length;++i){
+            var mediaURL = "";
+            if(listings.bundle[i].Media.length>=1){
+                mediaURL =listings.bundle[i].Media[0].MediaURL; 
+            } else {
+                mediaURL="https://cdn.houseplans.com/product/q5qkhirat4bcjrr4rpg9fk3q94/w800x533.jpg?v=8";
+            }
         	$('#result').append(`
         	<div class="listing p`+page+`">
                 <div class="a-property col-lg-4 col-sm-6">
                     <h2><a href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`">`+listings.bundle[i].UnparsedAddress+`</a></h2>
                     <div class="image-property">
-                        <a href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`"><img src="`+listings.bundle[i].Media[0].MediaURL+`" alt="`+listings.bundle[i].UnparsedAddress+`"></a>
+                        <a href="https://soulierproperties.com/property?id=`+listings.bundle[i].ListingId+`"><img src="`+mediaURL+`" alt="`+listings.bundle[i].UnparsedAddress+`"></a>
                     </div>
 
                     <div class="list-main-info">
@@ -88,24 +94,14 @@ function parseJson(){
                     
                 </div>
         	</div>`);
-        }
-
-            //Media appending
-            if(listings.bundle[i].Media != null){
-                for (var j=0; j<listings.bundle[i].Media.length;++j){
-                    $('#Media'+i).append(
-                        `<p>MediaURL `+(j+1)+`: `+listings.bundle[i].Media[j].MediaURL+`</p>`
-                    );
-                }
-            } else {$('#Media'+i).append("<p>Doesn't apply</p>");}
 
             //page number
         	if((i+1) % pageLimit == 0){
         		page++;
         	}
-        	cont++
-            pagination(page);
-		}
+        }
+        pagination(page);
+	}
 	});
 }
 
