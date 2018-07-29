@@ -31,7 +31,7 @@ $('#send').click(function(e){
 		rent = "true";
 	} else {rent = "false";}
 
-	if(zip != ""){
+	if(zip != "0"){
 		if((parseInt(zip) % 1 == 0) && (parseInt(bathrooms) % 1 == 0) && (parseInt(bedrooms) % 1 == 0) && (parseInt(init(minP)) % 1 == 0) && (parseInt(init(maxP)) % 1 == 0)) {
 			if((minP!="" || maxP=="")&&(minP=="" || maxP!="")){
 				if(parseInt(maxP) >= parseInt(minP)){
