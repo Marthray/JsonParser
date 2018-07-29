@@ -31,11 +31,10 @@ $('#send').click(function(e){
 		rent = "true";
 	} else {rent = "false";}
 
-	if(zip != ""){
+	if(zip != "0"){
 		if((parseInt(zip) % 1 == 0) && (parseInt(bathrooms) % 1 == 0) && (parseInt(bedrooms) % 1 == 0) && (parseInt(init(minP)) % 1 == 0) && (parseInt(init(maxP)) % 1 == 0)) {
 			if((minP!="" || maxP=="")&&(minP=="" || maxP!="")){
 				if(parseInt(maxP) >= parseInt(minP)){
-					console.log(accounting.formatNumber(parseInt(zip)));
 					Cookies.set('zip', zip);
 					Cookies.set('type', propType);
 					Cookies.set('bathrooms', bathrooms);
@@ -43,8 +42,8 @@ $('#send').click(function(e){
 					Cookies.set('bedrooms', bedrooms);
 					Cookies.set('minPrice', minP);
 					Cookies.set('maxPrice', maxP);
-					//window.location.href = 'https://soulierproperties.com/list-properties/';
-					window.location.href = 'probando.html';
+					window.location.href = 'https://soulierproperties.com/list-properties/';
+					//window.location.href = 'probando.html';
 				} else {
 					alert ("Minimum price MUST be lower than maximum price");
 				}

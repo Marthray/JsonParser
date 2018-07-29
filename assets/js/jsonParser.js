@@ -65,7 +65,7 @@ function parseJson(){
     	var pageLimit = 9;
         if (listings.bundle.length < 1){
             $('#result').append(`
-                <p> Sorry, nothing was found with your specifications. <a href="https://soulierproperties.com/">Try again</a>
+                <p> Sorry, nothing was found with your specifications. <a href="https://soulierproperties.com/">Try again</a></p>
                 `);
         } else {
         for (var i=0;i<listings.bundle.length;++i){
